@@ -162,6 +162,21 @@ favoriteButtons.forEach(button => {
 
 
 // ===== LAZY LOADING IMAGES =====
+document.addEventListener('DOMContentLoaded', () => {
+    const heroImage = document.querySelector('.hero-image-container img');
+    const images = document.querySelectorAll('img');
+
+    images.forEach(img => {
+        img.decoding = 'async';
+
+        if (img !== heroImage) {
+            img.loading = 'lazy';
+        } else {
+            img.removeAttribute('loading');
+        }
+    });
+});
+
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
